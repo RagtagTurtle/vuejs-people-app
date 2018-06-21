@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Interesting People</title>
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.js"></script>
+  <script src="index.js" defer></script>
+  <link rel="stylesheet" href="main.css">
+</head>
+<body>
+  <div id="vue-app">
+
+    <router-view></router-view>
+
+  </div>
+</body>
+</html>
+
+<template id="home-page">
+  <div class="vue-component">
+
+    <h1> {{ message }}</h1>
+
+    <h1> Interesting People: </h1>
+
+    <ul>
+      <div v-for="person in people">
+        <h2 v-on:click="toggleBio(person)">{{ person.name }}</h2>
+        <h4 v-if="person.bioVisible"> {{ person.bio }}</h4> <button v-on:click="deletePerson(person)">Delete</button>
+      </div>
+    </ul>
+
+    <div>
+      Name: <input v-model="newPerson.name"><br>
+      Bio: <input v-model="newPerson.bio"><br>
+      <button v-on:click="addPerson()">Add Person</button>
+    </div>
+
+    <h4>Number of People: {{ numberOfPeople() }}</h4>
+
+  </div>
+</template>
